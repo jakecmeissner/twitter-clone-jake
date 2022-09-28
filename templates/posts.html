@@ -4,19 +4,30 @@
 
 
 <section class="content">
+    <header>
+        <img class="chirp_logo_bird"  src="{% static 'img/seagull.png' %}" />
+        <img class="chirp_logo" src="{% static 'img/Chirper_logo.jpg' %}" />
+        <p class="small_writing">Only slightly better than Twitter...</p>
+    </header>
+
     <section class="post_form">
-        <form action="/" method="POST">
+        <form class="form_sub" action="/" method="POST">
             {% csrf_token %}
             <input type="text" name="name" placeholder="Name" required>
             <textarea name="body" placeholder="Tell us anything..." required></textarea>
-            <input type="submit" value="POST">
+            <input id="box" type="submit" value="CHIRP">
         </form>
     </section>
     <section class="posts">
-        <ul>
+        <ul >
             {% for post in posts %}
             <li>
-                <img class="menu_icon js-menu-icon"  src="{% static 'img/menu2.png' %}" />
+                <div>
+                    <img class="menu_icon js-menu-icon"  src="{% static 'img/menu2.png' %}">
+                    <p>Edit</p>
+                    <p>Delete</p>
+                </div>
+
                 <div class="menu">
                     <a href="/delete/{{ post.id }}/"></a>
                 </div>
@@ -28,6 +39,9 @@
                     <div class="datetime">{{ post.createdAt }} <br /> </div>
                     <p>{{ post.body }} <br /> </p>
                     <a href="/delete/{{ post.id }}/">Delete</a>
+
+                    <!-- <img src="/static/img/icon-small-menu.svg" class="small-menu js-popover" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="<a href='/tweetEditView/500/'>Edit</a><br><a href='/tweetDelete/500/'>Delete</a>" data-bs-html="true" data-bs-original-title="" title=""> -->
+
                 </div>
             </li>
             {% endfor %}
