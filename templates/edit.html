@@ -1,0 +1,27 @@
+{% extends 'base.html'  %}
+{% block content %}
+{% load static %}
+
+<section class="content">
+    <header>
+        <img class="chirp_logo_bird"  src="{% static 'img/seagull.png' %}" />
+        <img class="chirp_logo" src="{% static 'img/Chirper_logo.jpg' %}" />
+        <p class="small_writing">Only slightly better than Twitter...</p>
+    </header>
+
+    <section class="post_form">
+        <form class="form_sub" action="/edit/{{post.id}}/" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="text" name="name" value="{{post.name}}" required>
+            <textarea name="body" required>{{post.body}}</textarea>
+            <input type="file" name="image">
+            {% if post.image  %}
+                <img src="{{post.image.url}}" style="width: 300px;" alt="">
+            {% endif %}
+            <input id="box" type="submit" value="CHIRP">
+            <button><a href="{% url 'index' %}">Cancel</a></button>
+        </form>
+    </section>
+</section>
+
+{% endblock %}

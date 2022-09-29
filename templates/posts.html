@@ -11,10 +11,11 @@
     </header>
 
     <section class="post_form">
-        <form class="form_sub" action="/" method="POST">
+        <form class="form_sub" action="/" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <input type="text" name="name" placeholder="Name" required>
             <textarea name="body" placeholder="Tell us anything..." required></textarea>
+            <input type="file" name="image">
             <input id="box" type="submit" value="CHIRP">
         </form>
     </section>
@@ -22,14 +23,15 @@
         <ul >
             {% for post in posts %}
             <li>
-                <div>
+                <!-- <div>
                     <img class="menu_icon js-menu-icon"  src="{% static 'img/menu2.png' %}">
                     <p>Edit</p>
                     <p>Delete</p>
-                </div>
-
+                </div> -->
+                <img class="menu_icon js-menu-icon"  src="{% static 'img/menu2.png' %}"/>
                 <div class="menu">
-                    <a href="/delete/{{ post.id }}/"></a>
+                    <a href="/delete/{{ post.id }}/">Delete</a>
+                    <a href="/edit/{{post.id}}/">Edit</a>
                 </div>
                 <div class="logo">
                     <img src="{% static 'img/user.png' %}" />
@@ -38,9 +40,11 @@
                     <div class="name">{{ post.name }} <br /> </div>
                     <div class="datetime">{{ post.createdAt }} <br /> </div>
                     <p>{{ post.body }} <br /> </p>
-                    <a href="/delete/{{ post.id }}/">Delete</a>
-
-                    <!-- <img src="/static/img/icon-small-menu.svg" class="small-menu js-popover" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="<a href='/tweetEditView/500/'>Edit</a><br><a href='/tweetDelete/500/'>Delete</a>" data-bs-html="true" data-bs-original-title="" title=""> -->
+                    {% if post.image  %}
+                    <img src="{{post.image.url}}" style="width: 300px;" alt="">
+                    {% endif %} <br>
+                    <a href="/like/{{post.id}}/"><img style="width: 30px; " src="{% static 'img/love.png' %}" alt=""></a>
+                    {{post.like}}
 
                 </div>
             </li>
@@ -48,7 +52,7 @@
         </ul>
     </section>
     <script   src="https://code.jquery.com/jquery-3.6.1.js"   integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="   crossorigin="anonymous"></script>
-    <script src="{% static 'js/posts.js' %}"></script>
+    <script src="{% static 'js/post.js' %}"></script>
 </section>
 
 {% endblock %}
