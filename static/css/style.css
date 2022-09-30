@@ -2,15 +2,16 @@
 
 html,
 body {
-  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .content {
   max-width: 600px;
-  height: 100%;
   margin: 0 auto;
-  border-left: 2px solid rgb(65, 84, 225);
-  border-right: 2px solid rgb(65, 84, 225);
+  border-left: 2px dotted rgb(65, 84, 225);
+  border-right: 2px dotted rgb(65, 84, 225);
 }
 
 .content .chirp_logo_bird {
@@ -48,12 +49,21 @@ body {
     width: 90%;
 }
 
+.post_form .form_sub .name_holder {
+    border: 0px;
+    width: 100%;
+    background: #e6e8fe;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+
 
 .post_form input {
   width: 70%;
   margin-bottom: 10px;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid rgb(65, 84, 225);
 }
 
 .post_form #box {
@@ -62,9 +72,15 @@ body {
 }
 
 .post_form textarea {
-  width: 70%;
+  /* width: 70%;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid rgb(65, 84, 225); */
+  border: 0px;
+  width: 100%;
+  background: #e6e8fe;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
 }
 
 .posts ul {
@@ -157,6 +173,8 @@ p {
   color: rgb(65, 84, 225);
   font-size: medium;
 }
+
+
 
 @media screen and (max-width: 500px) {
   .posts li .name_body .name {

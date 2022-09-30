@@ -13,7 +13,7 @@
     <section class="post_form">
         <form class="form_sub" action="/" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <input type="text" name="name" placeholder="Name" required>
+            <input class="name_holder" type="text" name="name" placeholder="Name" required>
             <textarea name="body" placeholder="Tell us anything..." required></textarea>
             <input type="file" name="image">
             <input id="box" type="submit" value="CHIRP">
@@ -30,7 +30,7 @@
                 </div> -->
                 <img class="menu_icon js-menu-icon"  src="{% static 'img/menu2.png' %}"/>
                 <div class="menu">
-                    <a class="edit_and_delete" href="/delete/{{ post.id }}/">Delete</a>
+                    <a class="edit_and_delete" href="/delete/{{ post.id }}/">Delete</a><br><hr>
                     <a class="edit_and_delete" href="/edit/{{post.id}}/">Edit</a>
                 </div>
                 <div class="logo">
