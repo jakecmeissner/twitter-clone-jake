@@ -9,8 +9,8 @@ body {
   max-width: 600px;
   height: 100%;
   margin: 0 auto;
-  border-left: 1px solid #ccc;
-  border-right: 1px solid #ccc;
+  border-left: 2px solid rgb(65, 84, 225);
+  border-right: 2px solid rgb(65, 84, 225);
 }
 
 .content .chirp_logo_bird {
@@ -146,6 +146,16 @@ li {
 p {
     overflow: hidden;
     word-wrap: break-word;
+}
+
+.edit_and_delete {
+  font-weight: 600;
+  color: rgb(65, 84, 225);
+}
+
+.like_count {
+  color: rgb(65, 84, 225);
+  font-size: medium;
 }
 
 @media screen and (max-width: 500px) {

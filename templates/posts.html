@@ -30,8 +30,8 @@
                 </div> -->
                 <img class="menu_icon js-menu-icon"  src="{% static 'img/menu2.png' %}"/>
                 <div class="menu">
-                    <a href="/delete/{{ post.id }}/">Delete</a>
-                    <a href="/edit/{{post.id}}/">Edit</a>
+                    <a class="edit_and_delete" href="/delete/{{ post.id }}/">Delete</a>
+                    <a class="edit_and_delete" href="/edit/{{post.id}}/">Edit</a>
                 </div>
                 <div class="logo">
                     <img src="{% static 'img/user.png' %}" />
@@ -44,7 +44,9 @@
                     <img src="{{post.image.url}}" style="width: 300px;" alt="">
                     {% endif %} <br>
                     <a href="/like/{{post.id}}/"><img style="width: 30px; " src="{% static 'img/love.png' %}" alt=""></a>
-                    {{post.like}}
+                    <div class="like_count">
+                        {{post.like}}
+                    </div>
 
                 </div>
             </li>
