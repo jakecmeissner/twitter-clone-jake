@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 import posts
 import cloudinary
 import cloudinary.uploader
@@ -30,7 +30,13 @@ SECRET_KEY = 'django-insecure-c-xqhfjwh#v0s_l7skp=s1r_+t=^2^pa0@n41nl5)8(m1c3sa7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+
+X_FRAME_OPTIONS = '*'
+CORS_ORIGIN_ALLOW_ALL = True
+CSRF_TRUSTED_ORIGINS = [
+    'http://0.0.0.0:3000'
+]
 
 
 # Application definition
@@ -45,9 +51,11 @@ INSTALLED_APPS = [
     'posts',
     'user_profiles',
     'cloudinary',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -123,10 +131,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_URL = "/static/"
 STATICFILES_DIRS = [
-    BASE_DIR / 'static' 
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 # Default primary key field type
@@ -141,3 +151,5 @@ cloudinary.config(
   api_secret = "uB0sCGLC63mOljomdKqmlPH9Q7U" 
 )
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
